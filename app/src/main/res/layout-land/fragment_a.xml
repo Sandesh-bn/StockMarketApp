@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="apps.sandesh.stockmarketapp.FragmentA"
+    android:paddingTop="30dp"
+    android:padding="16dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:id="@+id/cityInput"
+            android:backgroundTint="@android:color/white"
+            android:selectAllOnFocus="true"
+            android:hint="@string/city_input"
+            android:elevation="14dp"
+            android:textColor = "#ebebeb"
+            android:layout_marginTop="12dp"
+            android:textAllCaps="true"
+            android:fontFamily="sans-serif-light"
+            android:textSize="24sp" />
+        <Button
+            android:id="@+id/search_button"
+            android:onClick="showWeatherOnMainScreen"
+            android:elevation="10dp"
+            android:layout_toLeftOf="@id/cityInput"
+            style="@style/Widget.AppCompat.Button"
+            android:background="@android:drawable/ic_menu_search"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/cityInput"
+            android:layout_toRightOf="@+id/cityInput"
+            android:layout_toEndOf="@+id/cityInput" />
+
+    </LinearLayout>
+
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/resultImage"
+        android:src="@drawable/main"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="california, usa"
+        android:textColor="#d3d2d2"
+        android:id="@+id/location_main_screen"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_gravity="center"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cloudy"
+        android:textColor="#e3e3e3"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_gravity="center"
+        android:id="@+id/condition_text_main_screen"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Map"
+
+            android:onClick="showMap"
+            android:id="@+id/show_map_button"
+            android:textColor="#dadada"
+            android:layout_toRightOf="@id/multi_day_button"
+            />
+
+        <TextView
+            android:text="1 Week"
+            android:layout_centerHorizontal="true"
+            android:onClick="darkWeatherMultiday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:textColor="#dadada"
+            android:id="@+id/multi_day_button"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1 Day"
+            android:onClick="darkWeatherToday"
+            android:id="@+id/today_button"
+            android:textColor="#dadada"
+
+            android:layout_toLeftOf="@id/multi_day_button"
+
+            />
+    </RelativeLayout>
+</LinearLayout>

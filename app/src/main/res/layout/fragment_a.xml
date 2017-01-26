@@ -1,0 +1,110 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cloud_partly_cloudy_gradient"
+
+    android:fitsSystemWindows="true"
+    tools:context="apps.sandesh.stockmarketapp.FragmentA"
+    android:paddingTop="8dp">
+
+   <com.github.mikephil.charting.charts.LineChart
+       android:layout_width="match_parent"
+       android:id="@+id/mainScreenChart"
+       android:layout_height="400dp"></com.github.mikephil.charting.charts.LineChart>
+
+   <Button
+       android:layout_width="wrap_content"
+       android:text="S & P"
+       android:layout_toLeftOf="@id/gap_view"
+       android:layout_below="@id/mainScreenChart"
+       android:layout_height="wrap_content" />
+
+   <View
+       android:layout_width="16dp"
+       android:layout_height="16dp"
+       android:id="@+id/gap_view"
+      android:layout_below="@id/mainScreenChart"
+       android:layout_centerHorizontal="true"/>
+   <Button
+       android:layout_width="wrap_content"
+       android:text="Nasdap"
+       android:layout_toRightOf="@id/gap_view"
+       android:layout_below="@id/mainScreenChart"
+       android:layout_height="wrap_content" />
+
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:id="@+id/resultImage"
+       android:layout_below="@+id/cityInput"
+       android:layout_centerHorizontal="true"
+       android:scaleX="0.8"
+       android:scaleY="0.8" />
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/resultImage"
+       android:text=""
+       android:textColor="#fafafa"
+       android:id="@+id/location_main_screen"
+       android:textAppearance="@style/TextAppearance.AppCompat.Large"
+       android:layout_centerHorizontal="true"
+       />
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text=""
+       android:textColor="#fafafa"
+       android:layout_below="@id/location_main_screen"
+       android:textAppearance="@style/TextAppearance.AppCompat.Large"
+       android:layout_centerHorizontal="true"
+       android:id="@+id/condition_text_main_screen"
+       />
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignParentBottom="true"
+       android:layout_marginBottom="16dp">
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Show Map"
+       android:onClick="showMap"
+       android:background="@drawable/transparent_gradient"
+       android:layout_toLeftOf="@+id/today_button"
+       android:id="@+id/show_map_button"
+       android:textColor="#dadada"
+       />
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="1 Day"
+       android:onClick="darkWeatherToday"
+       android:id="@+id/today_button"
+       android:layout_centerHorizontal="true"
+       android:layout_marginLeft="16dp"
+       android:layout_marginRight="16dp"
+       android:textColor="#dadada"
+       />
+
+
+
+
+   <TextView
+       android:text="1 Week"
+       android:onClick="darkWeatherMultiday"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textColor="#dadada"
+       android:layout_toRightOf="@id/today_button"
+       android:id="@+id/multi_day_button"
+       />
+
+   </RelativeLayout>
+
+</LinearLayout>

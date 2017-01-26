@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:paddingTop="10dp"
+
+    android:paddingBottom="10dp">
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textColor="#8897af"
+        android:id="@+id/date_multiday_textView" />
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_multiday_textView"
+        android:layout_alignParentLeft="true"
+        android:textColor="#b1b5bd"
+        android:layout_alignParentStart="true"
+        android:id="@+id/day_multiday_textView" />
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+
+        app:srcCompat="@drawable/clear_day"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/date_multiday_textView"
+        android:layout_toEndOf="@+id/date_multiday_textView"
+        android:id="@+id/multiday_imageView" />
+
+
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/multiday_imageView"
+        android:id="@+id/temperature_multiday_textView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="bold"
+        android:textColor="#cecece"
+        android:layout_alignParentTop="true"
+         />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temperature_multiday_textView"
+        android:layout_toRightOf="@+id/multiday_imageView"
+        android:id="@+id/condition_multiday_textView"
+        android:layout_alignParentRight="true"
+    android:textColor="#408EB1"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Stock Market App</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="chapter">
+        <item>24 hour</item>
+        <item>5 day</item>
+
+    </string-array>
+
+    <string-array name="description">
+        <item>This is description for 24 hour</item>
+        <item>This is description for 5 days</item>
+    </string-array>
+    <string name="title_activity_another">AnotherActivity</string>
+    <string name="city_input">Enter stock quote</string>
+</resources>

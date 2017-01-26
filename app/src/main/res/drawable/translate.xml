@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transition xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <!-- The drawables used here can be solid colors, gradients, shapes, images, etc. -->
+    <item android:id="@+id/start_color" android:drawable="@drawable/clear_day_gradient" />
+
+    <item android:id="@+id/end_color" android:drawable="@drawable/green_blue_purple_gradient" />
+</transition>
