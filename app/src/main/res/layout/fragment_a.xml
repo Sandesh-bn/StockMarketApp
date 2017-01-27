@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cloud_partly_cloudy_gradient"
-
+    android:orientation="vertical"
     android:fitsSystemWindows="true"
     tools:context="apps.sandesh.stockmarketapp.FragmentA"
     android:paddingTop="8dp">
@@ -11,59 +11,190 @@
    <com.github.mikephil.charting.charts.LineChart
        android:layout_width="match_parent"
        android:id="@+id/mainScreenChart"
-       android:layout_height="400dp"></com.github.mikephil.charting.charts.LineChart>
+       android:layout_weight="1"
+       android:layout_height="0dp"></com.github.mikephil.charting.charts.LineChart>
 
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+      <View
+          android:layout_width="16dp"
+          android:layout_height="16dp"
+          android:id="@+id/gap_view"
+
+          android:layout_centerHorizontal="true"/>
    <Button
        android:layout_width="wrap_content"
-       android:text="S & P"
+       android:text="S &amp; P"
        android:layout_toLeftOf="@id/gap_view"
-       android:layout_below="@id/mainScreenChart"
+       android:onClick="getSandPData"
        android:layout_height="wrap_content" />
 
-   <View
-       android:layout_width="16dp"
-       android:layout_height="16dp"
-       android:id="@+id/gap_view"
-      android:layout_below="@id/mainScreenChart"
-       android:layout_centerHorizontal="true"/>
+
    <Button
        android:layout_width="wrap_content"
-       android:text="Nasdap"
+       android:text="Nasdaq"
        android:layout_toRightOf="@id/gap_view"
-       android:layout_below="@id/mainScreenChart"
+       android:onClick="getNasdaqData"
        android:layout_height="wrap_content" />
+   </RelativeLayout>
 
-   <ImageView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/resultImage"
-       android:layout_below="@+id/cityInput"
-       android:layout_centerHorizontal="true"
-       android:scaleX="0.8"
-       android:scaleY="0.8" />
+   <TableLayout
+       android:background="@drawable/transparent_gradient"
+       android:layout_width="match_parent"
+       android:layout_height="150dp"
+       android:layout_marginTop="8dp"
+       android:stretchColumns="*"
+       android:layout_marginBottom="8dp"
+       >
+      <TableRow>
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_height="70dp"
+             android:id="@+id/latitude_layout"
+             android:padding="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="33"
+                android:textSize="24dp"
+                android:gravity="center"
+                android:id="@+id/one_value"
+                android:textColor="#FFCECECE"
+                android:layout_height="40dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="15dp"
+                android:text="one_label"
+                android:textColor="#94989f"
+                android:gravity="center"
+                android:id="@+id/one_label"
+                android:layout_height="20dp" />
+         </LinearLayout>
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_height="70dp"
+             android:id="@+id/longitude_layout"
+             android:padding="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="33"
+                android:id="@+id/two_value"
+                android:textSize="24dp"
+                android:textColor="#FFCECECE"
+                android:gravity="center"
+                android:layout_height="40dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="15dp"
+                android:id="@+id/two_label"
+                android:text="Longitude"
+                android:textColor="#94989f"
+                android:gravity="center"
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_below="@+id/resultImage"
-       android:text=""
-       android:textColor="#fafafa"
-       android:id="@+id/location_main_screen"
-       android:textAppearance="@style/TextAppearance.AppCompat.Large"
-       android:layout_centerHorizontal="true"
-       />
+                android:layout_height="20dp" />
+         </LinearLayout>
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_height="70dp"
+             android:padding="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="24"
+                android:id="@+id/three_value"
+                android:textSize="24dp"
+                android:textColor="#FFCECECE"
+                android:gravity="center"
+                android:layout_height="40dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="15dp"
+                android:text="GMT Offset"
+                android:id="@+id/three_label"
+                android:textColor="#94989f"
+                android:gravity="center"
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text=""
-       android:textColor="#fafafa"
-       android:layout_below="@id/location_main_screen"
-       android:textAppearance="@style/TextAppearance.AppCompat.Large"
-       android:layout_centerHorizontal="true"
-       android:id="@+id/condition_text_main_screen"
-       />
+                android:layout_height="20dp" />
+         </LinearLayout>
 
+      </TableRow>
+      <TableRow>
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_height="70dp"
+             android:padding="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="24"
+                android:id="@+id/four_value"
+                android:textSize="24dp"
+                android:textColor="#FFCECECE"
+                android:gravity="center"
+                android:layout_height="40dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="15dp"
+                android:id="@+id/four_label"
+                android:text="Windspeed"
+                android:textColor="#94989f"
+                android:gravity="center"
+
+                android:layout_height="20dp" />
+         </LinearLayout>
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_height="70dp"
+             android:padding="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="33"
+
+                android:textSize="24dp"
+                android:textColor="#FFCECECE"
+                android:id="@+id/five_value"
+                android:gravity="center"
+                android:layout_height="40dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="15dp"
+                android:text="Humidity"
+                android:id="@+id/five_label"
+                android:textColor="#94989f"
+                android:gravity="center"
+
+                android:layout_height="20dp" />
+         </LinearLayout>
+         <LinearLayout
+             android:orientation="vertical"
+             android:layout_height="70dp"
+             android:padding="5dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="33"
+                android:id="@+id/six_value"
+                android:textSize="24dp"
+                android:textColor="#FFCECECE"
+                android:gravity="center"
+                android:layout_height="40dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:textSize="15dp"
+                android:text="Pressure"
+                android:id="@+id/six_label"
+                android:textColor="#94989f"
+                android:gravity="center"
+
+                android:layout_height="20dp" />
+         </LinearLayout>
+
+      </TableRow>
+
+   </TableLayout>
    <RelativeLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"

@@ -9,6 +9,7 @@ import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,12 +24,27 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import static apps.sandesh.stockmarketapp.R.id.cityInput;
 
 //import android.support.v4.app.FragmentManager;
 
@@ -47,6 +63,16 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
     ArrayList<String> multiDayInfo;
     ImageView mainScreenImage;
     ViewGroup mainPortraitLayout;
+
+    // Stock market app variables from here.
+    private LineChart lineChart;
+    LineDataSet set;
+    ArrayList<Double> xVal = new ArrayList<>();
+    ArrayList<Double> yVal = new ArrayList<>();
+    ArrayList<Entry> entries = new ArrayList<>();
+    TextView oneLabel, twoLabel, threeLabel, fourLabel, fiveLabel, sixLabel;
+    TextView oneValue, twoValue, threeValue, fourValue, fiveValue, sixValue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
         showMapButton = (TextView)findViewById(R.id.show_map_button);
         todayButton = (TextView) findViewById(R.id.today_button);
         weeklyButton = (TextView) findViewById(R.id.multi_day_button);
-        cityUserInput = (EditText) findViewById(cityInput);
+
         info = "";
         conditionText = (TextView) findViewById(R.id.condition_text_main_screen);
         mainScreenImage = (ImageView) findViewById(R.id.resultImage);
@@ -74,7 +100,24 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
             w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         }
 
-
+        // stock market app variables
+        lineChart = (LineChart) findViewById(R.id.mainScreenChart);
+        XAxis xAxis = lineChart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.setAxisMinimum(0);
+        xAxis.setAxisLineWidth(1f);
+        oneLabel = (TextView) findViewById(R.id.one_label);
+        twoLabel = (TextView) findViewById(R.id.two_label);
+        threeLabel = (TextView) findViewById(R.id.three_label);
+        fourLabel = (TextView) findViewById(R.id.four_label);
+        fiveLabel = (TextView) findViewById(R.id.five_label);
+        sixLabel = (TextView) findViewById(R.id.six_label);
+        oneValue = (TextView) findViewById(R.id.one_value);
+        twoValue = (TextView) findViewById(R.id.two_value);
+        threeValue = (TextView) findViewById(R.id.three_value);
+        fourValue = (TextView) findViewById(R.id.four_value);
+        fiveValue = (TextView) findViewById(R.id.five_value);
+        sixValue = (TextView) findViewById(R.id.six_value);
     }
 
     public void showDialog(View v){
@@ -127,57 +170,6 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
             Toast.makeText(this, "Choosing nearest location: " + city , Toast.LENGTH_SHORT).show();
         }
 
-        locationText.setText(city + ", " + country);
-        int toColor = R.drawable.clear_day_gradient;
-
-        if (condition.equals("clear-day")) {
-            mainScreenImage.setImageResource(R.drawable.clear_day);
-            toColor = R.drawable.clear_day_gradient;
-        }
-        else if (condition.equals("cloudy")) {
-            mainScreenImage.setImageResource(R.drawable.cloudy);
-            toColor = R.drawable.cloud_partly_cloudy_gradient;
-        }
-        else if (condition.equals("rain")) {
-            mainScreenImage.setImageResource(R.drawable.rain);
-            toColor = R.drawable.rain_gradient;
-        }
-        else if (condition.equals("sleet")) {
-            mainScreenImage.setImageResource(R.drawable.sleet);
-            toColor = R.drawable.sleet_snow_gradient;
-        }
-        else if (condition.equals("snow")) {
-            mainScreenImage.setImageResource(R.drawable.snow);
-            toColor = R.drawable.sleet_snow_gradient;
-        }
-        else if (condition.equals("fog")) {
-            mainScreenImage.setImageResource(R.drawable.fog);
-            toColor = R.drawable.wind_fog_gradient;
-        }
-        else if (condition.equals("wind")) {
-            mainScreenImage.setImageResource(R.drawable.wind);
-            toColor = R.drawable.wind_fog_gradient;
-        }
-        else if (condition.equals("clear-night")) {
-            mainScreenImage.setImageResource(R.drawable.clear_night);
-            toColor = R.drawable.clear_night_gradient;
-        }
-        else if (condition.equals("partly-cloudy-day")) {
-            mainScreenImage.setImageResource(R.drawable.partly_cloudy_day);
-            toColor = R.drawable.cloud_partly_cloudy_gradient;
-        }
-        else {
-            mainScreenImage.setImageResource(R.drawable.rain);
-        }
-        //animateBackGround(mainPortraitLayout.getBackground(), getApplicationContext().getResources().getDrawable(toColor) );
-        //animateBackGround();
-        mainPortraitLayout.setBackground(getResources().getDrawable(toColor));
-
-        /*
-        ObjectAnimator animator = ObjectAnimator.ofInt(mainPortraitLayout, "background", R.drawable.light_blue_gradient, R.drawable.wind_fog_gradient).setDuration(3000);
-        animator.setEvaluator(new ArgbEvaluator());
-        animator.start();
-        */
 
     }
 
@@ -446,6 +438,225 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
             intent.setData(Uri.parse(locationUri));
             chooser = Intent.createChooser(intent, "Hey there choose one");
             startActivity(chooser);
+        }
+
+    }
+
+    public void getSandPData(View view) {
+        String url = "https://www.quandl.com/api/v3/datasets/YAHOO/INDEX_GSPC.json?api_key=D_2ozLMLXJJ-rTKs3qm2&start_date=2017-01-20";
+
+        DownloadTask downloadTask = new DownloadTask();
+        downloadTask.execute(url);
+    }
+
+    // TODO: move it to fragment class
+    public class DownloadTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            StringBuilder result = new StringBuilder();
+            URL url;
+            HttpURLConnection urlConnection = null;
+            try {
+                url = new URL(urls[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
+
+                while (data != -1) {
+                    char current = (char) data;
+                    result.append(current);
+                    data = reader.read();
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            Log.i("insideMainScreen", "onPostExecuted");
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+                JSONObject obj = jsonObject.getJSONObject("dataset");
+                JSONArray array = obj.getJSONArray("data");
+                if (set != null) {
+                    set.clear();
+                    set.notifyDataSetChanged();
+                }
+                //Log.i("label", columnNames.toString());
+                JSONArray columnNames = obj.getJSONArray("column_names");
+                oneLabel.setText(columnNames.getString(0));
+                twoLabel.setText(columnNames.getString(1));
+                threeLabel.setText(columnNames.getString(2));
+                fourLabel.setText(columnNames.getString(3));
+                fiveLabel.setText(columnNames.getString(4));
+                sixLabel.setText(columnNames.getString(5));
+                yVal.clear();
+                String values[] = array.getJSONArray(0).toString().split(",");
+                Log.i("values", Arrays.toString(values));
+                Log.i("delete", values[0] + "");
+                Log.i("delete", values[1] + "");
+                oneValue.setText(values[0]);
+                twoValue.setText(values[1]);
+                threeValue.setText(values[2]);
+                fourValue.setText(values[3]);
+                fiveValue.setText(values[4]);
+                sixValue.setText(values[5]);
+
+
+                for (int i = 0; i < array.length(); i++) {
+                    //Log.i("quandl", array[i][4] + "");
+                    //JSONObject o = new JSONObject(array[i]);
+                    //Log.i("qua", array.getJSONArray(i).get(3).toString());
+                    yVal.add((Double) array.getJSONArray(i).get(3));
+                }
+                Log.i("yVal in s and p", yVal.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            for (int i = 0; i < yVal.size(); i++) {
+                //float xf = (float) (xVal.get(i) * 1.0f);
+                float yf = (float) (yVal.get(i) * 1.0f);
+                entries.add(new Entry(i  * 1.0f, yf));
+
+            }
+
+            set = new LineDataSet(entries, "Legendary legend");
+            set.notifyDataSetChanged();
+            Log.i("linedataset in s and p", set.toString());
+            set.setColor(getResources().getColor(R.color.colorGreen));
+            set.setDrawFilled(true);
+            LineData lineData = new LineData(set);
+            lineChart.setData(lineData);
+            lineChart.notifyDataSetChanged();
+            //lineChart.clear();
+            lineChart.invalidate();
+
+        }
+
+    }
+
+
+    public void getNasdaqData(View view) {
+        String url = "https://www.quandl.com/api/v3/datasets/NASDAQOMX/COMP.json?&start_date=2017-01-15&end_date=2017-01-25?api_key=D_2ozLMLXJJ-rTKs3qm2";
+
+        DownloadNasdaqTask downloadTask = new DownloadNasdaqTask();
+        downloadTask.execute(url);
+    }
+
+    // TODO: move it to fragment class
+    public class DownloadNasdaqTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            StringBuilder result = new StringBuilder();
+            URL url;
+            HttpURLConnection urlConnection = null;
+            try {
+                url = new URL(urls[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
+
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
+
+                while (data != -1) {
+                    char current = (char) data;
+                    result.append(current);
+                    data = reader.read();
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            Log.i("insideMainScreen", "onPostExecuted");
+            try {
+
+                JSONObject jsonObject = new JSONObject(result);
+                if (set != null) {
+                    set.clear();
+                    set.notifyDataSetChanged();
+                }
+                //Log.i("nasdaq", jsonObject.toString());
+
+                JSONObject obj = jsonObject.getJSONObject("dataset");
+                //Log.i("date", obj.getJSONObject("newest_available_date").toString());
+
+                String dateString = obj.get("newest_available_date").toString();
+                JSONArray array = obj.getJSONArray("data");
+                Log.i("nasdaq", array.toString());
+                JSONArray columnNames = obj.getJSONArray("column_names");
+                Log.i("label", columnNames.toString());
+                oneLabel.setText(columnNames.getString(0));
+                twoLabel.setText(columnNames.getString(1));
+                threeLabel.setText(columnNames.getString(2));
+                fourLabel.setText(columnNames.getString(3));
+                fiveLabel.setText(columnNames.getString(4));
+                sixLabel.setText(columnNames.getString(5));
+
+                String values[] = array.getJSONArray(0).toString().split(",");
+                Log.i("values", Arrays.toString(values));
+
+                Log.i("delete", values[0] + "");
+                Log.i("delete", values[1] + "");
+                oneValue.setText(dateString);
+                twoValue.setText(values[1]);
+                threeValue.setText(values[2]);
+                fourValue.setText(values[3]);
+                fiveValue.setText(values[4]);
+                sixValue.setText(values[5]);
+                yVal.clear();
+
+                for (int i = 0; i < array.length(); i++) {
+                    //Log.i("quandl", array[i][4] + "");
+                    //JSONObject o = new JSONObject(array[i]);
+                    //Log.i("qua", array.getJSONArray(i).get(3).toString());
+                    yVal.add((Double) array.getJSONArray(i).get(1) / 100);
+                }
+               Log.i("yVal in nasdaq", yVal.toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            for (int i = 0; i < yVal.size(); i++) {
+                //float xf = (float) (xVal.get(i) * 1.0f);
+                float yf = (float) (yVal.get(i) * 1.0f);
+                entries.add(new Entry(i  * 1.0f, yf));
+
+            }
+
+            //LineDataSet set = new LineDataSet(entries, "Legendary legend");
+            set = new LineDataSet(entries, "Legendary legend");
+            set.notifyDataSetChanged();
+            Log.i("linedataset in nasdaq", set.toString());
+            set.setColor(getResources().getColor(R.color.colorGreen));
+            set.setDrawFilled(true);
+            LineData lineData = new LineData(set);
+            lineChart.setData(lineData);
+            lineChart.notifyDataSetChanged();
+            //lineChart.clear();
+            lineChart.invalidate();
+
         }
 
     }

@@ -5,14 +5,16 @@
 
             <gradient
                 android:angle="135"
-                android:endColor="#Fffff9"
-                android:centerColor="#9cd7c1"
-                android:startColor="#4d68e8"
+                android:startColor="#599FB3"
+                android:centerColor="#456899"
+                android:endColor="#142041"
                 android:type="linear" />
 
         </shape>
     </item>
 </selector>
+
+
 
 
 
