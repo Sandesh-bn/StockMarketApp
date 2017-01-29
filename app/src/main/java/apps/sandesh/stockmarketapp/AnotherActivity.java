@@ -9,6 +9,11 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
@@ -37,12 +42,51 @@ public class AnotherActivity extends AppCompatActivity {
     ArrayList<Entry> stockEntries = new ArrayList<>();
 
 
+    // spinner
+    Spinner stockSpinner;
+    ArrayAdapter<CharSequence> spinnerAdapter;
+
+    //autocomplete
+    AutoCompleteTextView stockAutoComplete;
+    String[] stockSymbols;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_another);
 
         stockChart = (LineChart) findViewById(R.id.stock_chart);//$
+
+        stockAutoComplete = (AutoCompleteTextView) findViewById(R.id.stock_auto_complete);
+        stockSymbols = getResources().getStringArray(R.array.stock_symbol);
+        ArrayAdapter<String> autoCompleteAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stockSymbols);
+        stockAutoComplete.setAdapter(autoCompleteAdapter);
+        stockAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View arg1, int position,
+                                    long id) {
+                Log.i("your selected item", parent.getItemAtPosition(position).toString());
+                //s1.get(position) is name selected from autocompletetextview
+                // now you can show the value on textview.
+            }
+        });
+
+        //spinner
+        stockSpinner = (Spinner) findViewById(R.id.stockSpinner);
+        spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.dummy, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        stockSpinner.setAdapter(spinnerAdapter);
+        stockSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " is selected", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         // Make status bar transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
@@ -151,8 +195,8 @@ public class AnotherActivity extends AppCompatActivity {
             stockLineDataset = new LineDataSet(stockEntries, "stock information");
             stockLineDataset.notifyDataSetChanged();
             Log.i("linedataset in stock", stockLineDataset.toString());
-            // stockLineDataset.setColor(getResources().getColor(R.color.colorGreen));
-            //stockLineDataset.setDrawFilled(true);
+            stockLineDataset.setColor(getResources().getColor(R.color.colorGreen));
+            stockLineDataset.setDrawFilled(true);
             LineData stockLineData = new LineData(stockLineDataset);
             if (stockLineData == null)
                 Log.i("NULL", "stockLineData is null");

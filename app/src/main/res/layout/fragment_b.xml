@@ -41,6 +41,12 @@
         android:paddingTop="20dp"
         android:id="@+id/day_layout">
 
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:id="@+id/stock_auto_complete"
+            android:hint="Enter Stock Symbol"
+            android:layout_height="wrap_content" />
+
         <com.github.mikephil.charting.charts.LineChart
             android:layout_width="match_parent"
             android:id="@+id/stock_chart"
@@ -59,6 +65,7 @@
                 android:text="Company A"
                 android:onClick="getStockInfo"/>
 
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,20 +76,13 @@
                 android:layout_marginRight="16dp"
                 android:textColor="#dadada"
                 />
-
-
-
-
-            <TextView
-                android:text="Duration 2"
+            <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#dadada"
-                android:layout_toRightOf="@id/today_button"
-                android:id="@+id/multi_day_button"
-                />
-
+                android:id="@+id/stockSpinner"
+                android:layout_toRightOf="@id/today_button"></Spinner>
         </RelativeLayout>
+
 
 
 
