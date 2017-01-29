@@ -83,7 +83,7 @@
             android:onClick="showMap"
             android:id="@+id/show_map_button"
             android:textColor="#dadada"
-            android:layout_toRightOf="@id/multi_day_button"
+
             />
 
         <TextView

@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
@@ -27,6 +27,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -40,15 +42,17 @@ public class AnotherActivity extends AppCompatActivity {
     ArrayList<Double> xStockVal = new ArrayList<>();
     ArrayList<Double> yStockVal = new ArrayList<>();
     ArrayList<Entry> stockEntries = new ArrayList<>();
+    TextView oneStockValue, twoStockValue, threeStockValue, fourStockValue,
+            fiveStockValue, sixStockValue, companyText;
 
 
-    // spinner
-    Spinner stockSpinner;
-    ArrayAdapter<CharSequence> spinnerAdapter;
 
     //autocomplete
     AutoCompleteTextView stockAutoComplete;
     String[] stockSymbols;
+    String[] companyNames;
+    String companyName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +61,17 @@ public class AnotherActivity extends AppCompatActivity {
         stockChart = (LineChart) findViewById(R.id.stock_chart);//$
 
         stockAutoComplete = (AutoCompleteTextView) findViewById(R.id.stock_auto_complete);
-        stockSymbols = getResources().getStringArray(R.array.stock_symbol);
+        stockSymbols = getResources().getStringArray(R.array.company_symbol);
+
+        oneStockValue = (TextView) findViewById(R.id.one_stock_value);
+        twoStockValue = (TextView) findViewById(R.id.two_stock_value);
+        threeStockValue = (TextView) findViewById(R.id.three_stock_value);
+        fourStockValue = (TextView) findViewById(R.id.four_stock_value);
+        fiveStockValue = (TextView) findViewById(R.id.five_stock_value);
+        sixStockValue = (TextView) findViewById(R.id.six_stock_value);
+        companyText = (TextView) findViewById(R.id.company_textView);
+
+
         ArrayAdapter<String> autoCompleteAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, stockSymbols);
         stockAutoComplete.setAdapter(autoCompleteAdapter);
         stockAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,27 +80,19 @@ public class AnotherActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View arg1, int position,
                                     long id) {
                 Log.i("your selected item", parent.getItemAtPosition(position).toString());
-                //s1.get(position) is name selected from autocompletetextview
-                // now you can show the value on textview.
+                String tokens[] = parent.getItemAtPosition(position).toString().split(", ");
+                if (tokens != null && tokens.length > 1) {
+                    Log.i("symbol", tokens[0]);
+                    Log.i("company", tokens[1]);
+                    companyName = tokens[1];
+                    getStockInfo(tokens[0]);
+                }
+                else
+                    Toast.makeText(getBaseContext(), "Stock information not available at this time.", Toast.LENGTH_SHORT);
             }
         });
 
-        //spinner
-        stockSpinner = (Spinner) findViewById(R.id.stockSpinner);
-        spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.dummy, android.R.layout.simple_spinner_item);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        stockSpinner.setAdapter(spinnerAdapter);
-        stockSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position) + " is selected", Toast.LENGTH_SHORT).show();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         // Make status bar transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
@@ -100,6 +106,7 @@ public class AnotherActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         FragmentB f2 = (FragmentB) getFragmentManager().findFragmentById(R.id.fragment2);
+        getStockInfo("fb");
 
     }
 
@@ -117,6 +124,11 @@ public class AnotherActivity extends AppCompatActivity {
         d.execute(url);
     }
 
+    public void getStockInfo(String symbol){
+        String url = "https://www.quandl.com/api/v3/datasets/WIKI/" + symbol + ".json?limit=5?column_index=4&api_key=D_2ozLMLXJJ-rTKs3qm2";
+        DownloadStockDataTaskActivity d = new DownloadStockDataTaskActivity();
+        d.execute(url);
+    }
 
 
     public class DownloadStockDataTaskActivity extends AsyncTask<String, Void, String> {
@@ -168,9 +180,34 @@ public class AnotherActivity extends AppCompatActivity {
                 Log.i("data", array.toString());
                 String dateString = obj.get("newest_available_date").toString();
                 Log.i("latest", dateString);
+
+
+
                 String values[] = array.getJSONArray(0).toString().split(",");
+                String previousDayValues[] = array.getJSONArray(1).toString().split(",");
+                Double difference =
+                        Double.parseDouble(values[4]) - Double.parseDouble(previousDayValues[4]);
+                Double percentage = Math.abs(difference) * 100 / Double.parseDouble(values[4]);
+
+                String percentageText = getDecimal(difference.toString()) + "(" +
+                                        getDecimal(percentage.toString()) + "%)";
                 Log.i("values", Arrays.toString(values));
 
+                oneStockValue.setText(dateString);
+                twoStockValue.setText(values[4]);
+
+                threeStockValue.setText(percentageText);
+                if (difference > 0) {
+                    threeStockValue.setTextColor(getResources().getColor(R.color.colorGreenArrow));
+                }
+                else
+                    threeStockValue.setTextColor(getResources().getColor(R.color.colorRedArrow));
+
+
+                fourStockValue.setText(values[1]);
+                fiveStockValue.setText(values[2]);
+                sixStockValue.setText(values[5]);
+                companyText.setText(companyName);
                 yStockVal.clear();
                 for (int i = 0; i < array.length(); i++) {
                     //Log.i("quandl", array[i][4] + "");
@@ -192,7 +229,7 @@ public class AnotherActivity extends AppCompatActivity {
             }
             Log.i("stockEntries", stockEntries.toString());
             //LineDataSet stockLineDataset = new LineDataSet(stockEntries, "Stock Information");
-            stockLineDataset = new LineDataSet(stockEntries, "stock information");
+            stockLineDataset = new LineDataSet(stockEntries, "Stock information");
             stockLineDataset.notifyDataSetChanged();
             Log.i("linedataset in stock", stockLineDataset.toString());
             stockLineDataset.setColor(getResources().getColor(R.color.colorGreen));
@@ -206,6 +243,12 @@ public class AnotherActivity extends AppCompatActivity {
             stockChart.invalidate();
 
 
+        }
+
+        private String getDecimal(String value) {
+            BigDecimal bd = new BigDecimal(value);
+            bd = bd.setScale(2, RoundingMode.HALF_UP);
+            return bd.doubleValue() + "";
         }
 
     }

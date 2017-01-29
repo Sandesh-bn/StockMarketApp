@@ -205,32 +205,10 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:text="Get stock quotes"
+       android:layout_centerHorizontal="true"
        android:onClick="showStockInformation"/>
 
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Stock quotes"
-       android:onClick="darkWeatherToday"
-       android:id="@+id/today_button"
-       android:layout_centerHorizontal="true"
-       android:layout_marginLeft="16dp"
-       android:layout_marginRight="16dp"
-       android:textColor="#dadada"
-       />
 
-
-
-
-   <TextView
-       android:text="1 Week"
-       android:onClick="darkWeatherMultiday"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:textColor="#dadada"
-       android:layout_toRightOf="@id/today_button"
-       android:id="@+id/multi_day_button"
-       />
 
    </RelativeLayout>
 

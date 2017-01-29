@@ -27,6 +27,515 @@
         <item>ACN</item>
         <item>ADBE</item>
     </string-array>
+
+
+    <string-array name="company_symbol">
+        <item>A, Agilent Technologies Inc</item>
+        <item>AAL, American Airlines Group</item>
+        <item>AAP, Advance Auto Parts</item>
+        <item>AAPL, Apple Inc.</item>
+        <item>ABBV, AbbVie</item>
+        <item>ABC, AmerisourceBergen Corp</item>
+        <item>ABT, Abbott Laboratories</item>
+        <item>ACN, Accenture plc</item>
+        <item>ADBE, Adobe Systems Inc</item>
+        <item>ADI, Analog Devices, Inc.</item>
+        <item>ADM, Archer-Daniels-Midland Co</item>
+        <item>ADP, Automatic Data Processing</item>
+        <item>ADS, Alliance Data Systems</item>
+        <item>ADSK, Autodesk Inc</item>
+        <item>AEE, Ameren Corp</item>
+        <item>AEP, American Electric Power</item>
+        <item>AES, AES Corp</item>
+        <item>AET, Aetna Inc</item>
+        <item>AFL, AFLAC Inc</item>
+        <item>AGN, Allergan, Plc</item>
+        <item>AIG, American International Group, Inc.</item>
+        <item>AIV, Apartment Investment &amp; Mgmt</item>
+        <item>AIZ, Assurant Inc</item>
+        <item>AJG, Arthur J. Gallagher &amp; Co.</item>
+        <item>AKAM, Akamai Technologies Inc</item>
+        <item>ALB, Albemarle Corp</item>
+        <item>ALK, Alaska Air Group Inc</item>
+        <item>ALL, Allstate Corp</item>
+        <item>ALLE, Allegion</item>
+        <item>ALXN, Alexion Pharmaceuticals</item>
+        <item>AMAT, Applied Materials Inc</item>
+        <item>AME, AMETEK Inc</item>
+        <item>AMG, Affiliated Managers Group Inc</item>
+        <item>AMGN, Amgen Inc</item>
+        <item>AMP, Ameriprise Financial</item>
+        <item>AMT, American Tower Corp A</item>
+        <item>AMZN, Amazon.com Inc</item>
+        <item>AN, AutoNation Inc</item>
+        <item>ANTM, Anthem Inc.</item>
+        <item>AON, Aon plc</item>
+        <item>APA, Apache Corporation</item>
+        <item>APC, Anadarko Petroleum Corp</item>
+        <item>APD, Air Products &amp; Chemicals Inc</item>
+        <item>APH, Amphenol Corp</item>
+        <item>ARNC, Arconic Inc</item>
+        <item>ATVI, Activision Blizzard</item>
+        <item>AVB, AvalonBay Communities, Inc.</item>
+        <item>AVGO, Broadcom</item>
+        <item>AVY, Avery Dennison Corp</item>
+        <item>AWK, American Water Works Company Inc</item>
+        <item>AXP, American Express Co</item>
+        <item>AYI, Acuity Brands Inc</item>
+        <item>AZO, AutoZone Inc</item>
+        <item>BA, Boeing Company</item>
+        <item>BAC, Bank of America Corp</item>
+        <item>BAX, Baxter International Inc.</item>
+        <item>BBBY, Bed Bath &amp; Beyond</item>
+        <item>BBT, BB&amp;T Corporation</item>
+        <item>BBY, Best Buy Co. Inc.</item>
+        <item>BCR, Bard (C.R.) Inc.</item>
+        <item>BDX, Becton Dickinson</item>
+        <item>BEN, Franklin Resources</item>
+        <item>BF-B, Brown-Forman Corporation</item>
+        <item>BHI, Baker Hughes Inc</item>
+        <item>BIIB, BIOGEN IDEC Inc.</item>
+        <item>BK, The Bank of New York Mellon Corp.</item>
+        <item>BLK, BlackRock</item>
+        <item>BLL, Ball Corp</item>
+        <item>BMY, Bristol-Myers Squibb</item>
+        <item>BRK-B, Berkshire Hathaway</item>
+        <item>BSX, Boston Scientific</item>
+        <item>BWA, BorgWarner</item>
+        <item>BXP, Boston Properties</item>
+        <item>C, Citigroup Inc.</item>
+        <item>CA, CA, Inc.</item>
+        <item>CAG, ConAgra Foods Inc.</item>
+        <item>CAH, Cardinal Health Inc.</item>
+        <item>CAT, Caterpillar Inc.</item>
+        <item>CB, Chubb Limited</item>
+        <item>CBG, CBRE Group</item>
+        <item>CBS, CBS Corp.</item>
+        <item>CCI, Crown Castle International Corp.</item>
+        <item>CCL, Carnival Corp.</item>
+        <item>CELG, Celgene Corp.</item>
+        <item>CERN, Cerner</item>
+        <item>CF, CF Industries Holdings Inc</item>
+        <item>CFG, Citizens Financial Group</item>
+        <item>CHD, Church &amp; Dwight</item>
+        <item>CHK, Chesapeake Energy</item>
+        <item>CHRW, C. H. Robinson Worldwide</item>
+        <item>CHTR, Charter Communications</item>
+        <item>CI, CIGNA Corp.</item>
+        <item>CINF, Cincinnati Financial</item>
+        <item>CL, Colgate-Palmolive</item>
+        <item>CLX, The Clorox Company</item>
+        <item>CMA, Comerica Inc.</item>
+        <item>CMCSA, Comcast A Corp</item>
+        <item>CME, CME Group Inc.</item>
+        <item>CMG, Chipotle Mexican Grill</item>
+        <item>CMI, Cummins Inc.</item>
+        <item>CMS, CMS Energy</item>
+        <item>CNC, Centene Corporation</item>
+        <item>CNP, CenterPoint Energy</item>
+        <item>COF, Capital One Financial</item>
+        <item>COG, Cabot Oil &amp; Gas</item>
+        <item>COH, Coach Inc.</item>
+        <item>COL, Rockwell Collins</item>
+        <item>COO, The Cooper Companies</item>
+        <item>COP, ConocoPhillips</item>
+        <item>COST, Costco Co.</item>
+        <item>COTY, Coty, Inc</item>
+        <item>CPB, Campbell Soup</item>
+        <item>CRM, Salesforce.com</item>
+        <item>CSCO, Cisco Systems</item>
+        <item>CSRA, CSRA Inc.</item>
+        <item>CSX, CSX Corp.</item>
+        <item>CTAS, Cintas Corporation</item>
+        <item>CTL, CenturyLink Inc</item>
+        <item>CTSH, Cognizant Technology Solutions</item>
+        <item>CTXS, Citrix Systems</item>
+        <item>CVS, CVS Health</item>
+        <item>CVX, Chevron Corp.</item>
+        <item>CXO, Concho Resources</item>
+        <item>D, Dominion Resources</item>
+        <item>DAL, Delta Air Lines</item>
+        <item>DD, Du Pont (E.I.)</item>
+        <item>DE, Deere &amp; Co.</item>
+        <item>DFS, Discover Financial Services</item>
+        <item>DG, Dollar General</item>
+        <item>DGX, Quest Diagnostics</item>
+        <item>DHI, D. R. Horton</item>
+        <item>DHR, Danaher Corp.</item>
+        <item>DIS, The Walt Disney Company</item>
+        <item>DISCA, Discovery Communications-A</item>
+        <item>DISCK, Discovery Communications-C</item>
+        <item>DLPH, Delphi Automotive</item>
+        <item>DLR, Digital Realty Trust</item>
+        <item>DLTR, Dollar Tree</item>
+        <item>DNB, Dun &amp; Bradstreet</item>
+        <item>DOV, Dover Corp.</item>
+        <item>DOW, Dow Chemical</item>
+        <item>DPS, Dr Pepper Snapple Group</item>
+        <item>DRI, Darden Restaurants</item>
+        <item>DTE, DTE Energy Co.</item>
+        <item>DUK, Duke Energy</item>
+        <item>DVA, DaVita Inc.</item>
+        <item>DVN, Devon Energy Corp.</item>
+        <item>EA, Electronic Arts</item>
+        <item>EBAY, eBay Inc.</item>
+        <item>ECL, Ecolab Inc.</item>
+        <item>ED, Consolidated Edison</item>
+        <item>EFX, Equifax Inc.</item>
+        <item>EIX, Edison Int\'l</item>
+        <item>EL, Estee Lauder Cos.</item>
+        <item>EMN, Eastman Chemical</item>
+        <item>EMR, Emerson Electric Company</item>
+        <item>ENDP, Endo International</item>
+        <item>EOG, EOG Resources</item>
+        <item>EQIX, Equinix</item>
+        <item>EQR, Equity Residential</item>
+        <item>EQT, EQT Corporation</item>
+        <item>ES, Eversource Energy</item>
+        <item>ESRX, Express Scripts</item>
+        <item>ESS, Essex Property Trust, Inc.</item>
+        <item>ETFC, E*Trade</item>
+        <item>ETN, Eaton Corporation</item>
+        <item>ETR, Entergy Corp.</item>
+        <item>EVHC, Envision Healthcare Corp</item>
+        <item>EW, Edwards Lifesciences</item>
+        <item>EXC, Exelon Corp.</item>
+        <item>EXPD, Expeditors Int\'l</item>
+        <item>EXPE, Expedia Inc.</item>
+        <item>EXR, Extra Space Storage</item>
+        <item>F, Ford Motor</item>
+        <item>FAST, Fastenal Co</item>
+        <item>FB, Facebook</item>
+        <item>FBHS, Fortune Brands Home &amp; Security</item>
+        <item>FCX, Freeport-McMoran Cp &amp; Gld</item>
+        <item>FDX, FedEx Corporation</item>
+        <item>FE, FirstEnergy Corp</item>
+        <item>FFIV, F5 Networks</item>
+        <item>FIS, Fidelity National Information Services</item>
+        <item>FISV, Fiserv Inc</item>
+        <item>FITB, Fifth Third Bancorp</item>
+        <item>FL, Foot Locker Inc</item>
+        <item>FLIR, FLIR Systems</item>
+        <item>FLR, Fluor Corp.</item>
+        <item>FLS, Flowserve Corporation</item>
+        <item>FMC, FMC Corporation</item>
+        <item>FOX, Twenty-First Century Fox Class B</item>
+        <item>FOXA, Twenty-First Century Fox Class A</item>
+        <item>FRT, Federal Realty Investment Trust</item>
+        <item>FSLR, First Solar Inc</item>
+        <item>FTI, FMC Technologies Inc.</item>
+        <item>FTR, Frontier Communications</item>
+        <item>FTV, Fortive Corp</item>
+        <item>GD, General Dynamics</item>
+        <item>GE, General Electric</item>
+        <item>GGP, General Growth Properties Inc.</item>
+        <item>GILD, Gilead Sciences</item>
+        <item>GIS, General Mills</item>
+        <item>GLW, Corning Inc.</item>
+        <item>GM, General Motors</item>
+        <item>GOOG, Alphabet Inc Class C</item>
+        <item>GOOGL, Alphabet Inc Class A</item>
+        <item>GPC, Genuine Parts</item>
+        <item>GPN, Global Payments Inc</item>
+        <item>GPS, Gap (The)</item>
+        <item>GRMN, Garmin Ltd.</item>
+        <item>GS, Goldman Sachs Group</item>
+        <item>GT, Goodyear Tire &amp; Rubber</item>
+        <item>GWW, Grainger (W.W.) Inc.</item>
+        <item>HAL, Halliburton Co.</item>
+        <item>HAR, Harman Int\'l Industries</item>
+        <item>HAS, Hasbro Inc.</item>
+        <item>HBAN, Huntington Bancshares</item>
+        <item>HBI, Hanesbrands Inc</item>
+        <item>HCA, HCA Holdings</item>
+        <item>HCN, Welltower Inc.</item>
+        <item>HCP, HCP Inc.</item>
+        <item>HD, Home Depot</item>
+        <item>HES, Hess Corporation</item>
+        <item>HIG, Hartford Financial Svc.Gp.</item>
+        <item>HOG, Harley-Davidson</item>
+        <item>HOLX, Hologic</item>
+        <item>HON, Honeywell Int\'l Inc.</item>
+        <item>HP, Helmerich &amp; Payne</item>
+        <item>HPE, Hewlett Packard Enterprise</item>
+        <item>HPQ, HP Inc.</item>
+        <item>HRB, Block H&amp;R</item>
+        <item>HRL, Hormel Foods Corp.</item>
+        <item>HRS, Harris Corporation</item>
+        <item>HSIC, Henry Schein</item>
+        <item>HST, Host Hotels &amp; Resorts</item>
+        <item>HSY, The Hershey Company</item>
+        <item>HUM, Humana Inc.</item>
+        <item>IBM, International Business Machines</item>
+        <item>ICE, Intercontinental Exchange</item>
+        <item>IDXX, IDEXX Laboratories</item>
+        <item>IFF, Intl Flavors &amp; Fragrances</item>
+        <item>ILMN, Illumina Inc</item>
+        <item>INTC, Intel Corp.</item>
+        <item>INTU, Intuit Inc.</item>
+        <item>IP, International Paper</item>
+        <item>IPG, Interpublic Group</item>
+        <item>IR, Ingersoll-Rand PLC</item>
+        <item>IRM, Iron Mountain Incorporated</item>
+        <item>ISRG, Intuitive Surgical Inc.</item>
+        <item>ITW, Illinois Tool Works</item>
+        <item>IVZ, Invesco Ltd.</item>
+        <item>JBHT, J. B. Hunt Transport Services</item>
+        <item>JCI, Johnson Controls International</item>
+        <item>JEC, Jacobs Engineering Group</item>
+        <item>JNJ, Johnson &amp; Johnson</item>
+        <item>JNPR, Juniper Networks</item>
+        <item>JPM, JPMorgan Chase &amp; Co.</item>
+        <item>JWN, Nordstrom</item>
+        <item>K, Kellogg Co.</item>
+        <item>KEY, KeyCorp</item>
+        <item>KHC, Kraft Heinz Co</item>
+        <item>KIM, Kimco Realty</item>
+        <item>KLAC, KLA-Tencor Corp.</item>
+        <item>KMB, Kimberly-Clark</item>
+        <item>KMI, Kinder Morgan</item>
+        <item>KMX, Carmax Inc</item>
+        <item>KO, Coca Cola Company</item>
+        <item>KORS, Michael Kors Holdings</item>
+        <item>KR, Kroger Co.</item>
+        <item>KSS, Kohl\'s Corp.</item>
+        <item>KSU, Kansas City Southern</item>
+        <item>L, Loews Corp.</item>
+        <item>LB, L Brands Inc.</item>
+        <item>LEG, Leggett &amp; Platt</item>
+        <item>LEN, Lennar Corp.</item>
+        <item>LH, Laboratory Corp. of America Holding</item>
+        <item>LKQ, LKQ Corporation</item>
+        <item>LLL, L-3 Communications Holdings</item>
+        <item>LLTC, Linear Technology Corp.</item>
+        <item>LLY, Lilly (Eli) &amp; Co.</item>
+        <item>LMT, Lockheed Martin Corp.</item>
+        <item>LNC, Lincoln National</item>
+        <item>LNT, Alliant Energy Corp</item>
+        <item>LOW, Lowe\'s Cos.</item>
+        <item>LRCX, Lam Research</item>
+        <item>LUK, Leucadia National Corp.</item>
+        <item>LUV, Southwest Airlines</item>
+        <item>LVLT, Level 3 Communications</item>
+        <item>LYB, LyondellBasell</item>
+        <item>M, Macy\'s Inc.</item>
+        <item>MA, Mastercard Inc.</item>
+        <item>MAA, Mid-America Apartments</item>
+        <item>MAC, Macerich</item>
+        <item>MAR, Marriott Int\'l.</item>
+        <item>MAS, Masco Corp.</item>
+        <item>MAT, Mattel Inc.</item>
+        <item>MCD, McDonald\'s Corp.</item>
+        <item>MCHP, Microchip Technology</item>
+        <item>MCK, McKesson Corp.</item>
+        <item>MCO, Moody\'s Corp</item>
+        <item>MDLZ, Mondelez International</item>
+        <item>MDT, Medtronic plc</item>
+        <item>MET, MetLife Inc.</item>
+        <item>MHK, Mohawk Industries</item>
+        <item>MJN, Mead Johnson</item>
+        <item>MKC, McCormick &amp; Co.</item>
+        <item>MLM, Martin Marietta Materials</item>
+        <item>MMC, Marsh &amp; McLennan</item>
+        <item>MMM, 3M Company</item>
+        <item>MNK, Mallinckrodt Plc</item>
+        <item>MNST, Monster Beverage</item>
+        <item>MO, Altria Group Inc</item>
+        <item>MON, Monsanto Co.</item>
+        <item>MOS, The Mosaic Company</item>
+        <item>MPC, Marathon Petroleum</item>
+        <item>MRK, Merck &amp; Co.</item>
+        <item>MRO, Marathon Oil Corp.</item>
+        <item>MS, Morgan Stanley</item>
+        <item>MSFT, Microsoft Corp.</item>
+        <item>MSI, Motorola Solutions Inc.</item>
+        <item>MTB, M&amp;T Bank Corp.</item>
+        <item>MTD, Mettler Toledo</item>
+        <item>MU, Micron Technology</item>
+        <item>MUR, Murphy Oil</item>
+        <item>MYL, Mylan N.V.</item>
+        <item>NAVI, Navient</item>
+        <item>NBL, Noble Energy Inc</item>
+        <item>NDAQ, NASDAQ OMX Group</item>
+        <item>NEE, NextEra Energy</item>
+        <item>NEM, Newmont Mining Corp. (Hldg. Co.)</item>
+        <item>NFLX, Netflix Inc.</item>
+        <item>NFX, Newfield Exploration Co</item>
+        <item>NI, NiSource Inc.</item>
+        <item>NKE, Nike</item>
+        <item>NLSN, Nielsen Holdings</item>
+        <item>NOC, Northrop Grumman Corp.</item>
+        <item>NOV, National Oilwell Varco Inc.</item>
+        <item>NRG, NRG Energy</item>
+        <item>NSC, Norfolk Southern Corp.</item>
+        <item>NTAP, NetApp</item>
+        <item>NTRS, Northern Trust Corp.</item>
+        <item>NUE, Nucor Corp.</item>
+        <item>NVDA, Nvidia Corporation</item>
+        <item>NWL, Newell Brands</item>
+        <item>NWS, News Corp. Class B</item>
+        <item>NWSA, News Corp. Class A</item>
+        <item>O, Realty Income Corporation</item>
+        <item>OKE, ONEOK</item>
+        <item>OMC, Omnicom Group</item>
+        <item>ORCL, Oracle Corp.</item>
+        <item>ORLY, O\'Reilly Automotive</item>
+        <item>OXY, Occidental Petroleum</item>
+        <item>PAYX, Paychex Inc.</item>
+        <item>PBCT, People\'s United Financial</item>
+        <item>PBI, Pitney-Bowes</item>
+        <item>PCAR, PACCAR Inc.</item>
+        <item>PCG, PG&amp;E Corp.</item>
+        <item>PCLN, Priceline.com Inc</item>
+        <item>PDCO, Patterson Companies</item>
+        <item>PEG, Public Serv. Enterprise Inc.</item>
+        <item>PEP, PepsiCo Inc.</item>
+        <item>PFE, Pfizer Inc.</item>
+        <item>PFG, Principal Financial Group</item>
+        <item>PG, Procter &amp; Gamble</item>
+        <item>PGR, Progressive Corp.</item>
+        <item>PH, Parker-Hannifin</item>
+        <item>PHM, Pulte Homes Inc.</item>
+        <item>PKI, PerkinElmer</item>
+        <item>PLD, Prologis</item>
+        <item>PM, Philip Morris International</item>
+        <item>PNC, PNC Financial Services</item>
+        <item>PNR, Pentair Ltd.</item>
+        <item>PNW, Pinnacle West Capital</item>
+        <item>PPG, PPG Industries</item>
+        <item>PPL, PPL Corp.</item>
+        <item>PRGO, Perrigo</item>
+        <item>PRU, Prudential Financial</item>
+        <item>PSA, Public Storage</item>
+        <item>PSX, Phillips 66</item>
+        <item>PVH, PVH Corp.</item>
+        <item>PWR, Quanta Services Inc.</item>
+        <item>PX, Praxair Inc.</item>
+        <item>PXD, Pioneer Natural Resources</item>
+        <item>PYPL, PayPal</item>
+        <item>QCOM, QUALCOMM Inc.</item>
+        <item>QRVO, Qorvo</item>
+        <item>R, Ryder System</item>
+        <item>RAI, Reynolds American Inc.</item>
+        <item>RCL, Royal Caribbean Cruises Ltd</item>
+        <item>REGN, Regeneron</item>
+        <item>RF, Regions Financial Corp.</item>
+        <item>RHI, Robert Half International</item>
+        <item>RHT, Red Hat Inc.</item>
+        <item>RIG, Transocean</item>
+        <item>RL, Polo Ralph Lauren Corp.</item>
+        <item>ROK, Rockwell Automation Inc.</item>
+        <item>ROP, Roper Industries</item>
+        <item>ROST, Ross Stores</item>
+        <item>RRC, Range Resources Corp.</item>
+        <item>RSG, Republic Services Inc</item>
+        <item>RTN, Raytheon Co.</item>
+        <item>SBUX, Starbucks Corp.</item>
+        <item>SCG, SCANA Corp</item>
+        <item>SCHW, Charles Schwab Corporation</item>
+        <item>SE, Spectra Energy Corp.</item>
+        <item>SEE, Sealed Air</item>
+        <item>SHW, Sherwin-Williams</item>
+        <item>SIG, Signet Jewelers</item>
+        <item>SJM, JM Smucker</item>
+        <item>SLB, Schlumberger Ltd.</item>
+        <item>SLG, SL Green Realty</item>
+        <item>SNA, Snap-On Inc.</item>
+        <item>SNI, Scripps Networks Interactive Inc.</item>
+        <item>SO, Southern Co.</item>
+        <item>SPG, Simon Property Group Inc</item>
+        <item>SPGI, S&amp;P Global, Inc.</item>
+        <item>SPLS, Staples Inc.</item>
+        <item>SRCL, Stericycle Inc</item>
+        <item>SRE, Sempra Energy</item>
+        <item>STI, SunTrust Banks</item>
+        <item>STT, State Street Corp.</item>
+        <item>STX, Seagate Technology</item>
+        <item>STZ, Constellation Brands</item>
+        <item>SWK, Stanley Black &amp; Decker</item>
+        <item>SWKS, Skyworks Solutions</item>
+        <item>SWN, Southwestern Energy</item>
+        <item>SYF, Synchrony Financial</item>
+        <item>SYK, Stryker Corp.</item>
+        <item>SYMC, Symantec Corp.</item>
+        <item>SYY, Sysco Corp.</item>
+        <item>T, AT&amp;T Inc</item>
+        <item>TAP, Molson Coors Brewing Company</item>
+        <item>TDC, Teradata Corp.</item>
+        <item>TDG, TransDigm Group</item>
+        <item>TEL, TE Connectivity Ltd.</item>
+        <item>TGNA, Tegna, Inc.</item>
+        <item>TGT, Target Corp.</item>
+        <item>TIF, Tiffany &amp; Co.</item>
+        <item>TJX, TJX Companies Inc.</item>
+        <item>TMK, Torchmark Corp.</item>
+        <item>TMO, Thermo Fisher Scientific</item>
+        <item>TRIP, TripAdvisor</item>
+        <item>TROW, T. Rowe Price Group</item>
+        <item>TRV, The Travelers Companies Inc.</item>
+        <item>TSCO, Tractor Supply Company</item>
+        <item>TSN, Tyson Foods</item>
+        <item>TSO, Tesoro Petroleum Co.</item>
+        <item>TSS, Total System Services</item>
+        <item>TWX, Time Warner Inc.</item>
+        <item>TXN, Texas Instruments</item>
+        <item>TXT, Textron Inc.</item>
+        <item>UA, Under Armour</item>
+        <item>UAA, Under Armour</item>
+        <item>UAL, United Continental Holdings</item>
+        <item>UDR, UDR Inc</item>
+        <item>UHS, Universal Health Services, Inc.</item>
+        <item>ULTA, Ulta Salon Cosmetics &amp; Fragrance Inc</item>
+        <item>UNH, United Health Group Inc.</item>
+        <item>UNM, Unum Group</item>
+        <item>UNP, Union Pacific</item>
+        <item>UPS, United Parcel Service</item>
+        <item>URBN, Urban Outfitters</item>
+        <item>URI, United Rentals, Inc.</item>
+        <item>USB, U.S. Bancorp</item>
+        <item>UTX, United Technologies</item>
+        <item>V, Visa Inc.</item>
+        <item>VAR, Varian Medical Systems</item>
+        <item>VFC, V.F. Corp.</item>
+        <item>VIAB, Viacom Inc.</item>
+        <item>VLO, Valero Energy</item>
+        <item>VMC, Vulcan Materials</item>
+        <item>VNO, Vornado Realty Trust</item>
+        <item>VRSK, Verisk Analytics</item>
+        <item>VRSN, Verisign Inc.</item>
+        <item>VRTX, Vertex Pharmaceuticals Inc</item>
+        <item>VTR, Ventas Inc</item>
+        <item>VZ, Verizon Communications</item>
+        <item>WAT, Waters Corporation</item>
+        <item>WBA, Walgreens Boots Alliance</item>
+        <item>WDC, Western Digital</item>
+        <item>WEC, Wec Energy Group Inc</item>
+        <item>WFC, Wells Fargo</item>
+        <item>WFM, Whole Foods Market</item>
+        <item>WHR, Whirlpool Corp.</item>
+        <item>WLTW, Willis Towers Watson</item>
+        <item>WM, Waste Management Inc.</item>
+        <item>WMB, Williams Cos.</item>
+        <item>WMT, Wal-Mart Stores</item>
+        <item>WRK, WestRock Company</item>
+        <item>WU, Western Union Co</item>
+        <item>WY, Weyerhaeuser Corp.</item>
+        <item>WYN, Wyndham Worldwide</item>
+        <item>WYNN, Wynn Resorts Ltd</item>
+        <item>XEC, Cimarex Energy</item>
+        <item>XEL, Xcel Energy Inc</item>
+        <item>XL, XL Capital</item>
+        <item>XLNX, Xilinx Inc</item>
+        <item>XOM, Exxon Mobil Corp.</item>
+        <item>XRAY, Dentsply Sirona</item>
+        <item>XRX, Xerox Corp.</item>
+        <item>XYL, Xylem Inc.</item>
+        <item>YHOO, Yahoo Inc.</item>
+        <item>YUM, Yum! Brands Inc</item>
+        <item>ZBH, Zimmer Biomet Holdings</item>
+        <item>ZION, Zions Bancorp</item>
+        <item>ZTS, Zoetis</item>
+    </string-array>
     <string-array name="stock_symbol">
         <item>A</item>
         <item>AAL</item>

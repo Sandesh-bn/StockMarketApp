@@ -45,6 +45,9 @@
             android:layout_width="match_parent"
             android:id="@+id/stock_auto_complete"
             android:hint="Enter Stock Symbol"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:textColor="#cecece"
             android:layout_height="wrap_content" />
 
         <com.github.mikephil.charting.charts.LineChart
@@ -59,28 +62,19 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="16dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Company A"
-                android:onClick="getStockInfo"/>
-
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Duration 1"
-                android:id="@+id/today_button"
+                android:text="D"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:id="@+id/company_textView"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:textColor="#dadada"
                 />
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/stockSpinner"
-                android:layout_toRightOf="@id/today_button"></Spinner>
+
         </RelativeLayout>
 
 
@@ -104,16 +98,16 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:text="33"
-                            android:textSize="30dp"
+                            android:textSize="24dp"
                             android:gravity="center"
-                            android:id="@+id/latitudeTextView"
+                            android:id="@+id/one_stock_value"
                             android:textColor="#FFCECECE"
                             android:layout_height="40dp"
                             />
                         <TextView
                             android:layout_width="match_parent"
                             android:textSize="15dp"
-                            android:text="Latitude"
+                            android:text="Date"
                             android:textColor="#94989f"
                             android:gravity="center"
 
@@ -128,8 +122,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:text="33"
-                            android:id="@+id/longitudeTextView"
-                            android:textSize="30dp"
+                            android:id="@+id/two_stock_value"
+                            android:textSize="24dp"
                             android:textColor="#FFCECECE"
                             android:gravity="center"
                             android:layout_height="40dp"
@@ -137,7 +131,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:textSize="15dp"
-                            android:text="Longitude"
+                            android:text="Close"
                             android:textColor="#94989f"
                             android:gravity="center"
 
@@ -150,8 +144,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:text="33"
-                            android:id="@+id/timeZoneOffsetText"
-                            android:textSize="30dp"
+                            android:id="@+id/three_stock_value"
+                            android:textSize="24dp"
                             android:textColor="#FFCECECE"
                             android:gravity="center"
                             android:layout_height="40dp"
@@ -159,7 +153,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:textSize="15dp"
-                            android:text="GMT Offset"
+                            android:text="Percentage"
                             android:textColor="#94989f"
                             android:gravity="center"
 
@@ -175,8 +169,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:text="33"
-                            android:id="@+id/windSpeedTextView"
-                            android:textSize="30dp"
+                            android:id="@+id/four_stock_value"
+                            android:textSize="24dp"
                             android:textColor="#FFCECECE"
                             android:gravity="center"
                             android:layout_height="40dp"
@@ -184,7 +178,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:textSize="15dp"
-                            android:text="Windspeed"
+                            android:text="Open"
                             android:textColor="#94989f"
                             android:gravity="center"
 
@@ -197,16 +191,16 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:text="33"
-                            android:textSize="30dp"
+                            android:textSize="24dp"
                             android:textColor="#FFCECECE"
-                            android:id="@+id/humidityTextView"
+                            android:id="@+id/five_stock_value"
                             android:gravity="center"
                             android:layout_height="40dp"
                             />
                         <TextView
                             android:layout_width="match_parent"
                             android:textSize="15dp"
-                            android:text="Humidity"
+                            android:text="High"
                             android:textColor="#94989f"
                             android:gravity="center"
 
@@ -219,8 +213,8 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:text="33"
-                            android:id="@+id/pressureTextView"
-                            android:textSize="30dp"
+                            android:id="@+id/six_stock_value"
+                            android:textSize="24dp"
                             android:textColor="#FFCECECE"
                             android:gravity="center"
                             android:layout_height="40dp"
@@ -228,7 +222,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:textSize="15dp"
-                            android:text="Pressure"
+                            android:text="Low"
                             android:textColor="#94989f"
                             android:gravity="center"
 

@@ -84,8 +84,7 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
         f1.setCommunicator(this);
         searchButton = (Button) findViewById(R.id.search_button);
         showMapButton = (TextView)findViewById(R.id.show_map_button);
-        todayButton = (TextView) findViewById(R.id.today_button);
-        weeklyButton = (TextView) findViewById(R.id.multi_day_button);
+
 
         info = "";
         conditionText = (TextView) findViewById(R.id.condition_text_main_screen);
@@ -426,15 +425,19 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
     }
 
     public void showStockInformation(View view) {
-        f2 = (FragmentB) fm.findFragmentById(R.id.fragment2);
-        if (f2 != null && f2.isVisible()){
-
+        if (!isOnline()){
+            showDialog(view);
         }
         else {
-            Intent intent = new Intent(this, AnotherActivity.class);
-            startActivity(intent);
-        }
 
+            f2 = (FragmentB) fm.findFragmentById(R.id.fragment2);
+            if (f2 != null && f2.isVisible()) {
+
+            } else {
+                Intent intent = new Intent(this, AnotherActivity.class);
+                startActivity(intent);
+            }
+        }
     }
 
     // TODO: move it to fragment class
