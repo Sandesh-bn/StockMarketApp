@@ -8,7 +8,6 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,6 +37,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -254,11 +255,10 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
         f2 = (FragmentB) fm.findFragmentById(R.id.fragment2);
         if (f2 != null && f2.isVisible()){
             //f2.changeData(index, weatherInfo);
-            f2.updateView(message);
+
         }
         else {
             Intent intent = new Intent(this, AnotherActivity.class);
-            intent.putExtra("message", message);
             startActivity(intent);
         }
     }
@@ -305,11 +305,11 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
         f2 = (FragmentB) fm.findFragmentById(R.id.fragment2);
         if (f2 != null && f2.isVisible()){
             //TODO: implement this
-            f2.showTodayInfo(todayInfo);
+
         }
         else {
             Intent intent = new Intent(this, AnotherActivity.class);
-            intent.putStringArrayListExtra("todayInfo", todayInfo);
+
             startActivity(intent);
         }
 
@@ -331,11 +331,11 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
         f2 = (FragmentB) fm.findFragmentById(R.id.fragment2);
         if (f2 != null && f2.isVisible()){
             //TODO: implement this
-            f2.showMultiDayInfo(multiDayInfo);
+
         }
         else {
             Intent intent = new Intent(this, AnotherActivity.class);
-            intent.putStringArrayListExtra("multiDayInfo", multiDayInfo);
+
             startActivity(intent);
         }
 
@@ -416,37 +416,25 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
 
     }
 
-    public void showMap(View view) {
-        if (!isOnline()){
-            showDialog(view);
-        }
-        else {
-            Intent intent = null, chooser = null;
-            String location = cityUserInput.getText().toString();
-            if (location == null) location = "San Francisco";
-            ArrayList<String> coordinates = getLatitudeAndLongitudeFromGoogleMapForAddress(location);
-            if (coordinates.size() == 0) {
-                Toast.makeText(this, "Using default city: San Francisco", Toast.LENGTH_SHORT).show();
-                coordinates.add("37.7749295");//latitude for san francisco
-                coordinates.add("-122.419415");//longitude for san francisco
-            }
-            String latitude = coordinates.get(0), longitude = coordinates.get(1);
-            intent = new Intent(Intent.ACTION_VIEW);
 
-            String locationUri = "geo:" + latitude + ", " + longitude +
-                    "?q=" + latitude + ", " + longitude;// + "(" + location + ")";
-            intent.setData(Uri.parse(locationUri));
-            chooser = Intent.createChooser(intent, "Hey there choose one");
-            startActivity(chooser);
-        }
-
-    }
 
     public void getSandPData(View view) {
         String url = "https://www.quandl.com/api/v3/datasets/YAHOO/INDEX_GSPC.json?api_key=D_2ozLMLXJJ-rTKs3qm2&start_date=2017-01-20";
 
         DownloadTask downloadTask = new DownloadTask();
         downloadTask.execute(url);
+    }
+
+    public void showStockInformation(View view) {
+        f2 = (FragmentB) fm.findFragmentById(R.id.fragment2);
+        if (f2 != null && f2.isVisible()){
+
+        }
+        else {
+            Intent intent = new Intent(this, AnotherActivity.class);
+            startActivity(intent);
+        }
+
     }
 
     // TODO: move it to fragment class
@@ -487,6 +475,7 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
                 JSONObject jsonObject = new JSONObject(result);
                 JSONObject obj = jsonObject.getJSONObject("dataset");
                 JSONArray array = obj.getJSONArray("data");
+                String dateString = obj.get("newest_available_date").toString();
                 if (set != null) {
                     set.clear();
                     set.notifyDataSetChanged();
@@ -504,11 +493,12 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
                 Log.i("values", Arrays.toString(values));
                 Log.i("delete", values[0] + "");
                 Log.i("delete", values[1] + "");
-                oneValue.setText(values[0]);
-                twoValue.setText(values[1]);
-                threeValue.setText(values[2]);
-                fourValue.setText(values[3]);
-                fiveValue.setText(values[4]);
+                oneValue.setText(dateString);
+
+                twoValue.setText(getDecimal(values[1]));
+                threeValue.setText(getDecimal(values[2]));
+                fourValue.setText(getDecimal(values[3]));
+                fiveValue.setText(getDecimal(values[4]));
                 sixValue.setText(values[5]);
 
 
@@ -543,6 +533,14 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
             lineChart.invalidate();
 
         }
+
+        private String getDecimal(String value) {
+            BigDecimal bd = new BigDecimal(value);
+            bd = bd.setScale(2, RoundingMode.HALF_UP);
+            return bd.doubleValue() + "";
+        }
+
+
 
     }
 

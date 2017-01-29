@@ -1,24 +1,48 @@
 package apps.sandesh.stockmarketapp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AnotherActivity extends AppCompatActivity {
+
+    LineChart stockChart;
+    LineDataSet stockLineDataset;
+    ArrayList<Double> xStockVal = new ArrayList<>();
+    ArrayList<Double> yStockVal = new ArrayList<>();
+    ArrayList<Entry> stockEntries = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_another);
 
+        stockChart = (LineChart) findViewById(R.id.stock_chart);//$
         // Make status bar transparent
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
@@ -30,70 +54,115 @@ public class AnotherActivity extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+
         FragmentB f2 = (FragmentB) getFragmentManager().findFragmentById(R.id.fragment2);
-        ArrayList<String> todayInfo = new ArrayList<>();
-        ArrayList<String> multiDayInfo  = new ArrayList<>();
+
+    }
+
+
+    public void getStockInfo(View view) {
         /*
-        //int index = intent.getIntExtra("index", 0);
-        ArrayList<String> indexAndWeather = intent.getStringArrayListExtra("index");
-        FragmentB f2 = (FragmentB) getFragmentManager().findFragmentById(R.id.fragment2);
-        Log.i("indexAndWeatherInfo", indexAndWeather.toString());
-        if (f2 != null) {
-            int index = Integer.parseInt(indexAndWeather.get(0));
-            ArrayList<String> infoList = new ArrayList<>();
-            for (int i = 1; i < indexAndWeather.size(); i++)
-                infoList.add(indexAndWeather.get(i));
-            f2.changeData(index, infoList);
-        }
+        FragmentB fb = new FragmentB();
+        FragmentB.DownloadStockDataTask downloadStockDataTask = fb.new DownloadStockDataTask();
+        String urlFirst = "https://www.quandl.com/api/v3/datasets/WIKI/goog/data.json?&exclude_column_names=true&start_date=2017-01-20&end_date=2017-01-25&order=asc&transform=rdif?api_key=D_2ozLMLXJJ-rTKs3qm2";
+        String url = "https://www.quandl.com/api/v3/datasets/WIKI/aapl.json?limit=5?column_index=4&api_key=D_2ozLMLXJJ-rTKs3qm2";
+        downloadStockDataTask.execute(url);
         */
-
-        // Dummmy
-        //String message = intent.getStringExtra("message");
-        //if (f2 != null){
-            //f2.updateView(message);
-        //}
-
-        //ArrayList<String> todayInfo = intent.getStringArrayListExtra("todayInfo");
-        todayInfo = intent.getStringArrayListExtra("todayInfo");
-        if (f2 != null && todayInfo != null){
-            f2.showTodayInfo(todayInfo);
-        }
-
-        //ArrayList<String> multiDayInfo = intent.getStringArrayListExtra("multiDayInfo");
-        multiDayInfo = intent.getStringArrayListExtra("multiDayInfo");
-        //Log.i("error", multiDayInfo.toString());
-        if (f2 != null && multiDayInfo != null){
-            f2.showMultiDayInfo(multiDayInfo);
-        }
+        String url = "https://www.quandl.com/api/v3/datasets/WIKI/fb.json?limit=30?column_index=4&api_key=D_2ozLMLXJJ-rTKs3qm2";
+        DownloadStockDataTaskActivity d = new DownloadStockDataTaskActivity();
+        d.execute(url);
     }
 
 
-    public void displayToast2(View view) {
-        String message = "";
-        int x= view.getLeft(), y = view.getBottom() - view.getHeight();
-        if (view.getId() == R.id.latitude_layout)
-            message = "Latitude";
-        else if (view.getId() == R.id.longitude_layout)
-            message = "Longitude";
 
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        //toast.setGravity(Gravity.TOP|Gravity.LEFT, x, y);
-        toast.setGravity(Gravity.TOP, view.getLeft() - view.getWidth()/2 - toast.getView().getWidth()/2, view.getBottom());
-        toast.show();
+    public class DownloadStockDataTaskActivity extends AsyncTask<String, Void, String> {
 
-    }
+        @Override
+        protected String doInBackground(String... urls) {
+            StringBuilder result = new StringBuilder();
+            URL url;
+            HttpURLConnection urlConnection = null;
+            try {
+                url = new URL(urls[0]);
+                urlConnection = (HttpURLConnection) url.openConnection();
 
-    public  void displayToast(View view){
-        String message = "";
-        int x= view.getLeft(), y = view.getBottom() - view.getHeight();
-        if (view.getId() == R.id.latitude_layout)
-            message = "Lat";
-        else if (view.getId() == R.id.longitude_layout)
-            message = "Longitude";
-        Toast toast = Toast.makeText(view.getContext(),
-                message, Toast.LENGTH_SHORT);
-        toast.setGravity(Gravity.LEFT | Gravity.BOTTOM, view.getLeft(),
-                view.getBottom()/2 );
-        toast.show();
+                InputStream in = urlConnection.getInputStream();
+                InputStreamReader reader = new InputStreamReader(in);
+                int data = reader.read();
+
+                while (data != -1) {
+                    char current = (char) data;
+                    result.append(current);
+                    data = reader.read();
+                }
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return result.toString();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            try {
+                Log.i("hello", "inside activity");
+
+                if (stockLineDataset != null) {
+                    stockLineDataset.clear();
+                    stockLineDataset.notifyDataSetChanged();
+                }
+
+                Log.i("stock info", result.toString());
+                JSONObject jsonObject = new JSONObject(result);
+                JSONObject obj = jsonObject.getJSONObject("dataset");
+                JSONArray array = obj.getJSONArray("data");
+                JSONArray columnLabels = obj.getJSONArray("column_names");
+                Log.i("column labels", columnLabels.toString());
+                Log.i("data", array.toString());
+                String dateString = obj.get("newest_available_date").toString();
+                Log.i("latest", dateString);
+                String values[] = array.getJSONArray(0).toString().split(",");
+                Log.i("values", Arrays.toString(values));
+
+                yStockVal.clear();
+                for (int i = 0; i < array.length(); i++) {
+                    //Log.i("quandl", array[i][4] + "");
+                    //JSONObject o = new JSONObject(array[i]);
+                    //Log.i("closing", array.getJSONArray(i).get(4).toString());
+                    yStockVal.add((Double) array.getJSONArray(i).get(4));
+                }
+                Log.i("closing", yStockVal.toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            for (int i = 0; i < yStockVal.size(); i++) {
+                //float xf = (float) (xVal.get(i) * 1.0f);
+                float yf = (float) (yStockVal.get(i) * 1.0f);
+                stockEntries.add(new Entry(i  * 1.0f, yf));
+
+            }
+            Log.i("stockEntries", stockEntries.toString());
+            //LineDataSet stockLineDataset = new LineDataSet(stockEntries, "Stock Information");
+            stockLineDataset = new LineDataSet(stockEntries, "stock information");
+            stockLineDataset.notifyDataSetChanged();
+            Log.i("linedataset in stock", stockLineDataset.toString());
+            // stockLineDataset.setColor(getResources().getColor(R.color.colorGreen));
+            //stockLineDataset.setDrawFilled(true);
+            LineData stockLineData = new LineData(stockLineDataset);
+            if (stockLineData == null)
+                Log.i("NULL", "stockLineData is null");
+            stockChart.setData(stockLineData);
+            stockChart.notifyDataSetChanged();
+            //lineChart.clear();
+            stockChart.invalidate();
+
+
+        }
+
     }
 }

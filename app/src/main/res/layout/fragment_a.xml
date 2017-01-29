@@ -200,21 +200,17 @@
        android:layout_height="wrap_content"
        android:layout_alignParentBottom="true"
        android:layout_marginBottom="16dp">
-   <TextView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Show Map"
-       android:onClick="showMap"
-       android:background="@drawable/transparent_gradient"
-       android:layout_toLeftOf="@+id/today_button"
-       android:id="@+id/show_map_button"
-       android:textColor="#dadada"
-       />
 
    <TextView
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="1 Day"
+       android:text="Get stock quotes"
+       android:onClick="showStockInformation"/>
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Stock quotes"
        android:onClick="darkWeatherToday"
        android:id="@+id/today_button"
        android:layout_centerHorizontal="true"
