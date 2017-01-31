@@ -55,8 +55,8 @@
              android:padding="5dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="33"
-                android:textSize="24dp"
+                android:text="0.0"
+                android:textSize="18dp"
                 android:gravity="center"
                 android:id="@+id/one_value"
                 android:textColor="#FFCECECE"
@@ -65,7 +65,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:textSize="15dp"
-                android:text="one_label"
+                android:text="Trade date"
                 android:textColor="#94989f"
                 android:gravity="center"
                 android:id="@+id/one_label"
@@ -78,7 +78,7 @@
              android:padding="5dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="33"
+                android:text="0.0"
                 android:id="@+id/two_value"
                 android:textSize="24dp"
                 android:textColor="#FFCECECE"
@@ -89,7 +89,7 @@
                 android:layout_width="match_parent"
                 android:textSize="15dp"
                 android:id="@+id/two_label"
-                android:text="Longitude"
+                android:text="Open"
                 android:textColor="#94989f"
                 android:gravity="center"
 
@@ -101,7 +101,7 @@
              android:padding="5dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="24"
+                android:text="0.0"
                 android:id="@+id/three_value"
                 android:textSize="24dp"
                 android:textColor="#FFCECECE"
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:textSize="15dp"
-                android:text="GMT Offset"
+                android:text="High"
                 android:id="@+id/three_label"
                 android:textColor="#94989f"
                 android:gravity="center"
@@ -127,7 +127,7 @@
              android:padding="5dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="24"
+                android:text="0.0"
                 android:id="@+id/four_value"
                 android:textSize="24dp"
                 android:textColor="#FFCECECE"
@@ -138,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:textSize="15dp"
                 android:id="@+id/four_label"
-                android:text="Windspeed"
+                android:text="Low"
                 android:textColor="#94989f"
                 android:gravity="center"
 
@@ -150,7 +150,7 @@
              android:padding="5dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="33"
+                android:text="0.0"
 
                 android:textSize="24dp"
                 android:textColor="#FFCECECE"
@@ -161,7 +161,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:textSize="15dp"
-                android:text="Humidity"
+                android:text="Close"
                 android:id="@+id/five_label"
                 android:textColor="#94989f"
                 android:gravity="center"
@@ -174,7 +174,7 @@
              android:padding="5dp">
             <TextView
                 android:layout_width="match_parent"
-                android:text="33"
+                android:text="0.0"
                 android:id="@+id/six_value"
                 android:textSize="24dp"
                 android:textColor="#FFCECECE"
@@ -184,7 +184,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:textSize="15dp"
-                android:text="Pressure"
+                android:text="Vol(in Mil.)"
                 android:id="@+id/six_label"
                 android:textColor="#94989f"
                 android:gravity="center"
