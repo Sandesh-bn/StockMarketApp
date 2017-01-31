@@ -32,8 +32,11 @@ import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 
 public class AnotherActivity extends AppCompatActivity {
 
@@ -165,7 +168,7 @@ public class AnotherActivity extends AppCompatActivity {
             super.onPostExecute(result);
             try {
                 Log.i("hello", "inside activity");
-
+                companyText.setText(companyName);
                 if (stockLineDataset != null) {
                     stockLineDataset.clear();
                     stockLineDataset.notifyDataSetChanged();
@@ -179,10 +182,6 @@ public class AnotherActivity extends AppCompatActivity {
                 Log.i("column labels", columnLabels.toString());
                 Log.i("data", array.toString());
                 String dateString = obj.get("newest_available_date").toString();
-                Log.i("latest", dateString);
-
-
-
                 String values[] = array.getJSONArray(0).toString().split(",");
                 String previousDayValues[] = array.getJSONArray(1).toString().split(",");
                 Double difference =
@@ -193,7 +192,7 @@ public class AnotherActivity extends AppCompatActivity {
                                         getDecimal(percentage.toString()) + "%)";
                 Log.i("values", Arrays.toString(values));
 
-                oneStockValue.setText(dateString);
+                oneStockValue.setText(getDate(dateString));
                 twoStockValue.setText(values[4]);
 
                 threeStockValue.setText(percentageText);
@@ -207,7 +206,7 @@ public class AnotherActivity extends AppCompatActivity {
                 fourStockValue.setText(values[1]);
                 fiveStockValue.setText(values[2]);
                 sixStockValue.setText(values[5]);
-                companyText.setText(companyName);
+
                 yStockVal.clear();
                 for (int i = 0; i < array.length(); i++) {
                     //Log.i("quandl", array[i][4] + "");
@@ -229,7 +228,7 @@ public class AnotherActivity extends AppCompatActivity {
             }
             Log.i("stockEntries", stockEntries.toString());
             //LineDataSet stockLineDataset = new LineDataSet(stockEntries, "Stock Information");
-            stockLineDataset = new LineDataSet(stockEntries, "Stock information");
+            stockLineDataset = new LineDataSet(stockEntries, companyName);
             stockLineDataset.notifyDataSetChanged();
             Log.i("linedataset in stock", stockLineDataset.toString());
             stockLineDataset.setColor(getResources().getColor(R.color.colorGreen));
@@ -249,6 +248,19 @@ public class AnotherActivity extends AppCompatActivity {
             BigDecimal bd = new BigDecimal(value);
             bd = bd.setScale(2, RoundingMode.HALF_UP);
             return bd.doubleValue() + "";
+        }
+
+        private String getDate(String value){
+            Date date = null;
+            String formattedDate = "";
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd").parse(value);
+                formattedDate = new SimpleDateFormat("E, MMM d").format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+           return formattedDate;
         }
 
     }

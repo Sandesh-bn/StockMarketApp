@@ -43,8 +43,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 //import android.support.v4.app.FragmentManager;
@@ -118,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
         fourValue = (TextView) findViewById(R.id.four_value);
         fiveValue = (TextView) findViewById(R.id.five_value);
         sixValue = (TextView) findViewById(R.id.six_value);
+
     }
 
     public void showDialog(View v){
@@ -418,10 +422,15 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
 
 
     public void getSandPData(View view) {
-        String url = "https://www.quandl.com/api/v3/datasets/YAHOO/INDEX_GSPC.json?api_key=D_2ozLMLXJJ-rTKs3qm2&start_date=2017-01-20";
 
-        DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute(url);
+        if (!isOnline())
+            showDialog(view);
+        else {
+            String url = "https://www.quandl.com/api/v3/datasets/YAHOO/INDEX_GSPC.json?api_key=D_2ozLMLXJJ-rTKs3qm2&start_date=2017-01-20";
+
+            DownloadTask downloadTask = new DownloadTask();
+            downloadTask.execute(url);
+        }
     }
 
     public void showStockInformation(View view) {
@@ -490,19 +499,20 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
                 threeLabel.setText(columnNames.getString(2));
                 fourLabel.setText(columnNames.getString(3));
                 fiveLabel.setText(columnNames.getString(4));
-                sixLabel.setText(columnNames.getString(5));
+                sixLabel.setText(columnNames.getString(5).substring(0,3) + "(in Mil.)" );
                 yVal.clear();
                 String values[] = array.getJSONArray(0).toString().split(",");
                 Log.i("values", Arrays.toString(values));
                 Log.i("delete", values[0] + "");
                 Log.i("delete", values[1] + "");
-                oneValue.setText(dateString);
+                oneValue.setText(getDate(dateString));
 
+                Double volume = Double.parseDouble(values[5])/1000000000;
                 twoValue.setText(getDecimal(values[1]));
                 threeValue.setText(getDecimal(values[2]));
                 fourValue.setText(getDecimal(values[3]));
                 fiveValue.setText(getDecimal(values[4]));
-                sixValue.setText(values[5]);
+                sixValue.setText(getDecimal(volume.toString()) + " B." );
 
 
                 for (int i = 0; i < array.length(); i++) {
@@ -524,7 +534,7 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
 
             }
 
-            set = new LineDataSet(entries, "Legendary legend");
+            set = new LineDataSet(entries, "S and P 500");
             set.notifyDataSetChanged();
             Log.i("linedataset in s and p", set.toString());
             set.setColor(getResources().getColor(R.color.colorGreen));
@@ -542,6 +552,18 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
             bd = bd.setScale(2, RoundingMode.HALF_UP);
             return bd.doubleValue() + "";
         }
+        private String getDate(String value){
+            Date date = null;
+            String formattedDate = "";
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd").parse(value);
+                formattedDate = new SimpleDateFormat("E, MMM d").format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return formattedDate;
+        }
 
 
 
@@ -549,10 +571,14 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
 
 
     public void getNasdaqData(View view) {
-        String url = "https://www.quandl.com/api/v3/datasets/NASDAQOMX/COMP.json?&start_date=2017-01-15&end_date=2017-01-25?api_key=D_2ozLMLXJJ-rTKs3qm2";
+        if (!isOnline())
+            showDialog(view);
+        else {
+            String url = "https://www.quandl.com/api/v3/datasets/NASDAQOMX/COMP.json?&start_date=2017-01-15&end_date=2017-01-25?api_key=D_2ozLMLXJJ-rTKs3qm2";
 
-        DownloadNasdaqTask downloadTask = new DownloadNasdaqTask();
-        downloadTask.execute(url);
+            DownloadNasdaqTask downloadTask = new DownloadNasdaqTask();
+            downloadTask.execute(url);
+        }
     }
 
     // TODO: move it to fragment class
@@ -604,6 +630,7 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
                 String dateString = obj.get("newest_available_date").toString();
                 JSONArray array = obj.getJSONArray("data");
                 Log.i("nasdaq", array.toString());
+
                 JSONArray columnNames = obj.getJSONArray("column_names");
                 Log.i("label", columnNames.toString());
                 oneLabel.setText(columnNames.getString(0));
@@ -615,15 +642,16 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
 
                 String values[] = array.getJSONArray(0).toString().split(",");
                 Log.i("values", Arrays.toString(values));
-
+                Double dividend = Double.parseDouble(values[5].substring(0,values[5].length()-1))/1000000000;
+                Double marketVal = Double.parseDouble(values[4])/1000000000;
                 Log.i("delete", values[0] + "");
                 Log.i("delete", values[1] + "");
-                oneValue.setText(dateString);
+                oneValue.setText(getDate(dateString));
                 twoValue.setText(values[1]);
                 threeValue.setText(values[2]);
                 fourValue.setText(values[3]);
-                fiveValue.setText(values[4]);
-                sixValue.setText(values[5]);
+                fiveValue.setText(getDecimal(marketVal.toString()) + " B.");
+                sixValue.setText(getDecimal(dividend.toString()) + " B.");
                 yVal.clear();
 
                 for (int i = 0; i < array.length(); i++) {
@@ -647,7 +675,7 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
             }
 
             //LineDataSet set = new LineDataSet(entries, "Legendary legend");
-            set = new LineDataSet(entries, "Legendary legend");
+            set = new LineDataSet(entries, "Nasdaq");
             set.notifyDataSetChanged();
             Log.i("linedataset in nasdaq", set.toString());
             set.setColor(getResources().getColor(R.color.colorGreen));
@@ -659,6 +687,22 @@ public class MainActivity extends AppCompatActivity implements FragmentA.Communi
             lineChart.invalidate();
 
         }
+        private String getDate(String value){
+            Date date = null;
+            String formattedDate = "";
+            try {
+                date = new SimpleDateFormat("yyyy-MM-dd").parse(value);
+                formattedDate = new SimpleDateFormat("E, MMM d").format(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
+            return formattedDate;
+        }
+        private String getDecimal(String value) {
+            BigDecimal bd = new BigDecimal(value);
+            bd = bd.setScale(2, RoundingMode.HALF_UP);
+            return bd.doubleValue() + "";
+        }
     }
 }
