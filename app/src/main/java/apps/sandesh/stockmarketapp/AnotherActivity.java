@@ -49,7 +49,7 @@ public class AnotherActivity extends AppCompatActivity {
             fiveStockValue, sixStockValue, companyText;
 
 
-
+	// dummy comment added in dummy-branch branch
     //autocomplete
     AutoCompleteTextView stockAutoComplete;
     String[] stockSymbols;
